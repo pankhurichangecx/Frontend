@@ -25,3 +25,8 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+#imageMgnifier {
+  width:100px;
+  height: 100px
+}

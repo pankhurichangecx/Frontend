@@ -1,6 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import {FaShoppingBag} from "react-icons/fa";
+import Link from "next/link";
+import React, { useContext } from "react";
+import { CartContext } from "@/contexts/CartContext";
+
 const Navbar = () => {
+  const { cartTotalItem } = useContext(CartContext);
   return (
     <>
       <div className="navbar">
@@ -51,21 +56,21 @@ const Navbar = () => {
               <div className="flex items-center">
                 <ul className="hidden lg:flex lg:flex-row font-medium mt-0 mr-6 space-x-8 text-sm">
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      href="/"
                       className="text-black dark:text-black hover:text-orange-400"
                       aria-current="page"
                     >
                       Shop All
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href=""
+                    <Link
+                      href="/plp"
                       className="text-black dark:text-black hover:text-orange-400"
                     >
                       Women
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <a
@@ -111,11 +116,14 @@ const Navbar = () => {
                       </span>
                     </a>
                   </li>
-                  <li>
-                    <button className="flex items-center w-8 h-8 border-black border rounded-full -mt-1">
-                      <FaShoppingBag className="w-10"/>
-                    </button>
-                  </li>
+                  <li><Link href="/checkout" className="hover:text-orange-400">
+                  <button className="relative flex items-center w-8 h-8 border border-black">
+                    <FaShoppingBag className="w-10" />
+                    <div className="absolute top-0 right-0 pr-1 pl-1 pt-0.5 pb-0.5 bg-red-500 text-white text-xs font-bold rounded-full transform translate-x-1/2 -translate-y-1/2 mt-6">
+                      {cartTotalItem}
+                    </div>
+                  </button>
+                    </Link></li>
                 </ul>
     
               </div>

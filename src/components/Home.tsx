@@ -1,7 +1,7 @@
-import UserList from "@/components/UserList";
+// import UserList from "@/components/UserList";
 
-const Home = () => {
-  return <UserList />;
-};
+// const Home = () => {
+//   return <UserList />;
+// };
 
-export default Home;
+// export default Home;

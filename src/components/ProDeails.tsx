@@ -1,42 +1,26 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useContext } from "react";
-// import { CartContext } from "./../contexts/CartContext";
-// import Product from "@/contexts/ImageMap";
-import details from "./../images/details.jpg";
-import d1 from "./../images/d1.jpg";
-import d2 from "./../images/d2.jpg";
-import d3 from "./../images/d3.jpg";
-import d4 from "./../images/d4.jpg";
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-// import { CartContext } from "./../contexts/CartContext";
+import { ProductContext } from "@/contexts/ProductContext";
+import { CartContext } from "@/contexts/CartContext";
 
 export default function ProDeails() {
-// export default function Pdp() {
-  // const Productdata = useContext(Product);
-  //  const product = Productdata?.state.productData;
-  //  const { addToCart } = useContext(CartContext);
 
+  const {productData, setProductData} = useContext(ProductContext)
+  const {addToCart} = useContext(CartContext)
   const handleAddToCart = () => {
-    addToCart(product);
+    addToCart(productData);
   };
 
-  const Images = [
-    {
-      photo:{url:d1},
-    },{
-      photo:{url:d2},
-    },{
-      photo:{url:d3},
-    },{
-      photo:{url:d4},
-    },{
-      photo:{url:details}
-    }
-  ]
- 
-  const [mainImage, setMainImage] = useState(Images[4]);
+  const {addToCompare} = useContext(CartContext)
+  const handleAddToCompare = () => {
+    addToCompare(productData);
+  };
+
+  // useEffect(()=>{
+  //   console.log(productData)
+  // },[productData])
 
 
   return (
@@ -46,7 +30,7 @@ export default function ProDeails() {
             <div className="mx-5 sm:mx-20 md:mx-36 lg:mx-32 xl:mx-40 2xl:mx-40 mt-5">
               <div className="sm:flex sm:text-sm md:flex md:text-sm">
                 Home/ Women
-                <div className=" text-gray-400">/ I&apos;m a Product</div>
+                <div className=" text-gray-400">/ {productData.name}</div>
               </div>
               <div>
               <button className="text-black font-normal px-1 text-xs">
@@ -59,20 +43,16 @@ export default function ProDeails() {
             </div>
               <div className="w-auto sm:w-96 md:w-80 lg:w-80 xl:w-80 2xl:w-80 mr-20 mt-5">
                 {/* <Link href=""><img src="images/details.jpg" /></Link> */}
-                <Link href="/"><Image src={mainImage.photo.url} alt={"Image"} /></Link>
+                <Link href=""><Image src={productData.image.url} alt={"Image"} /></Link>
+                
                 <div className="flex w-52 sm:w-60 mt-5 gap-1 ">
-                  {
-                    Images.map((e,i)=>{
-                      return(
-                        <>
-                          <div className="mx-2 hover:border-orange-500 border-2">
-                            {/* // eslint-disable-next-line @next/next/no-img-element */}
-                            <Image src={e.photo.url} alt={"iMAGE"} key={i} onClick={() =>{setMainImage(e)}}/>
-                          </div>
-                        </>
-                      )
-                    })
-                  }
+                <div className="mx-2 hover:border-orange-500 border-2"><Link href=""><Image src={productData.altimg.url} alt={"Image"} /></Link></div>
+                <div className="mx-2 hover:border-orange-500 border-2"><Link href=""><Image src={productData.altimg.url} alt={"Image"} /></Link></div>
+                <div className="mx-2 hover:border-orange-500 border-2"><Link href=""><Image src={productData.altimg.url} alt={"Image"} /></Link></div>
+                <div className="mx-2 hover:border-orange-500 border-2"><Link href=""><Image src={productData.altimg.url} alt={"Image"} /></Link></div>
+                <div className="mx-2 hover:border-orange-500 border-2"><Link href=""><Image src={productData.altimg.url} alt={"Image"} /></Link></div>
+                
+                  {/* Alt code */}
                 </div>
                 <div className="w-96 text-justify text-sm mt-5 lg:w-80">
                 I&apos;m aproduct description. I&apos;m a great place to add more
@@ -84,7 +64,7 @@ export default function ProDeails() {
 
             <div className="mx-5 sm:mx-20 md:mx-36 lg:mx-0 xl:mx-0 2xl:mx-0">
               <div className="mt-5 font-semibold text-2xl lg:mt-14">
-              I&apos;m a Product
+              {productData.name}
               </div>
               <div className="text-sm">SKU:0001</div>
               <div className="flex">
@@ -134,7 +114,7 @@ export default function ProDeails() {
 
               <br />
               <div className="flex">
-              <Link href="/cart">
+              <Link href="/checkout">
                     <button
                       className="w-44 bg-orange-500 text-white font-semibold py-2 px-4 
                   rounded-none border-2 border-transparent hover:bg-white hover:text-orange-500
@@ -161,9 +141,17 @@ export default function ProDeails() {
                   </svg>
                 </button>
               </div>
-              <button className="bg-black text-center text-white p-2 mt-4 w-64 hover:bg-white hover:text-black hover:border-black hover:border-2">
-                Buy Now
-              </button>
+              <div className="flex">
+                <button className="bg-black text-center text-white p-2 mt-4 w-64 hover:bg-white hover:text-black hover:border-black hover:border-2">
+                  Buy Now
+                </button>
+                <Link href="/compare">
+                <button className="bg-black text-center text-white p-2 mt-4 w-64 ml-4 hover:bg-white hover:text-black hover:border-black hover:border-2"
+                onClick={handleAddToCompare}>
+                  Add to Compare List
+                </button>
+                </Link>
+              </div>
               <div className="mt-7 mb-4">PRODUCT INFO</div>
               <div className="text-sm w-80 text-justify">
               I&apos;m aproduct description. I&apos;m a great place to add more to

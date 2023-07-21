@@ -4,8 +4,14 @@ import Icons from "./SideIcons";
 import Chat from "./Chat";
 import { ImgComponent } from "./Images";
 import Image from "next/image";
+// import ZoomImage from "./ZoomImage";
+// import React, { useState } from "react";
+// import ReactDOM from "react-dom";
+// import MyReactImageMagnify from "./ZoomImage";
 
 const HomePage = () => {
+
+
   return (
     <>
       <div className="lg:px-16 lg:py-7 px-6 py-2">
@@ -64,6 +70,15 @@ const HomePage = () => {
         </div>
         <ImgComponent />
         <Footer />
+        <div>
+      <div className="">
+        <div>
+          {/* <div className="w-52">
+            <MyReactImageMagnify />
+          </div> */}
+        </div>
+      </div>
+    </div>
       </div>
     </>
   );

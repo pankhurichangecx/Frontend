@@ -3,7 +3,8 @@ import React from "react";
 
 // * Importing the 'GlobalProvider' from a local file.
 // * This provider will be used to wrap the entire application and provide all necessary contexts to the application.
-import { GlobalProvider } from "@/contexts";
+// import { GlobalProvider } from "@/contexts";
+import {ProductProvider} from "@/contexts/ProductContext"
 
 // * Importing the 'AppProps' type from the 'next/app' library.
 // * This type is used to type the props of the custom App component in Next.js.
@@ -11,6 +12,7 @@ import type { AppProps } from "next/app";
 
 // * Importing global styles from a local CSS file.
 import "@/styles/globals.css";
+import { CartProvider } from "@/contexts/CartContext";
 
 // TODO: Creating a custom App component.
 // * This is a functional component that takes 'AppProps' as its props.
@@ -20,9 +22,13 @@ function App({ Component, pageProps }: AppProps) {
   // * The 'Component' prop is the page component, and 'pageProps' is its props.
   // * The '...' syntax is used to spread the 'pageProps' object into individual props.
   return (
-    <GlobalProvider>
+    <ProductProvider>
+      <CartProvider>
       <Component {...pageProps} />
-    </GlobalProvider>
+      </CartProvider>
+    </ProductProvider>
+      
+    
   );
 }
 
