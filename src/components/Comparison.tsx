@@ -15,8 +15,16 @@ import img3 from "./../images/img3.webp"
 import img4 from "./../images/img4.webp"
 
 export default function Comparison() {
-  const { compareItems, removeFromCompare } = useContext(CartContext) 
-  const { setProductData } = useContext(ProductContext) 
+  // const { compareItems, removeFromCompare } = useContext(CartContext) 
+  // const { setProductData } = useContext(ProductContext) 
+
+  // const removeHandler = (id: any) => {
+  //   removeFromCompare(id);
+  // };
+
+  // const handleData = (e: any) => {
+  //   setProductData(e);
+  // };
 
   const compareItems = [
     {

@@ -6,14 +6,25 @@ import Footer from "./Footer";
 import Navbar from "./NavBar";
 import Icons from "./SideIcons";
 import Quantity from "./Quantity";
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import OrderHistory from "./Order";
 
 export default function Checkout() {
-    const {cartItems, totalPrice} = useContext(CartContext)
+  const { cartItems, totalPrice, clearCart } = useContext(CartContext);
+  const [isCheckoutCompleted, setIsCheckoutCompleted] = useState(false);
 
-    // useEffect(()=>{
-    //   console.log(cartItems)
-    // },[cartItems])
+  const handleCheckout = () => {
+    // Process the checkout logic here, e.g., sending the order to the server.
+    setIsCheckoutCompleted(true);
+    clearCart();
+  };
+
+  if (isCheckoutCompleted) {
+    return (
+      <OrderHistory/>
+    );
+  }
+
 
   return (
     <>
@@ -61,9 +72,16 @@ export default function Checkout() {
                     <div>Total</div>
                     <div className="ml-72">{"$" + totalPrice}</div>
                 </div>
-                <div><button className="w-44 bg-orange-500 text-white font-semibold py-2 px-4 
-                rounded-none border-2 border-transparent hover:bg-white hover:text-orange-500
-                hover:border-orange-500 hover:border-solid mt-5 ml-24">Checkout</button></div>
+                
+                <button
+          className="w-44 bg-orange-500 text-white font-semibold py-2 px-4 
+          rounded-none border-2 border-transparent hover:bg-white hover:text-orange-500
+          hover:border-orange-500 hover:border-solid mt-5 ml-24"
+          onClick={handleCheckout}
+        >
+          Checkout
+        </button>
+        
                 <div className="flex mt-2 ml-28">
                     <div className="w-4 mt-1"><img src="https://i.ibb.co/XFZTm2L/lock.png" alt="discount-code"/></div>
                     <div className="ml-1">Secure Checkout</div>

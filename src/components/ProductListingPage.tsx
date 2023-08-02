@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import { ImgComponent } from "./Images";
 import Navbar from "./NavBar";
 import Icons from "./SideIcons";
-import { ProductProvider } from './../contexts/ProductContext';
+// import { ProductProvider } from './../contexts/ProductContext';
 
 // import ImageCarousel from "./Carousel";
 // import ProductComparison from "./comparision";
@@ -13,7 +13,7 @@ export default function Plp() {
   
   return (
     <>
-    <ProductProvider>
+    {/* <ProductProvider> */}
       <div className="lg:px-16 lg:py-7 px-6 py-2">
         <Navbar />
         <Icons />
@@ -33,7 +33,7 @@ export default function Plp() {
       {/* <ProductComparison/> */}
       <Footer />
       {/* <ImageCarousel /> */}
-      </ProductProvider>
+      {/* </ProductProvider> */}
     </>
   );
 };

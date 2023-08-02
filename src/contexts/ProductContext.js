@@ -8,7 +8,7 @@ import img6 from "./../images/img6.webp";
 import img7 from "./../images/img7.webp";
 import img8 from "./../images/img8.webp";
 import img9 from "./../images/img9.webp";
-// import {img1a} from "./../images/img1a.jpg";
+// import img1a from "./../images/img1a.jpg";
 // import img1b from "./../images/img1b.jpg";
 // import img1b from "./../images/img1c.webp";
 // import img1d from "./../images/img1d.webp";
@@ -34,6 +34,7 @@ import React, { useState } from "react";
 const ProductContext = React.createContext(null);
 
 const ProductProvider = ({children})=>{
+    // console.log(img1b,'img1bimg1b');
     const [productData , setProductData] = useState({})
     const [compareList, setCompareList] = useState([]);
     // const [quantity, setQuantity] = useState(1)
@@ -61,10 +62,10 @@ const ProductProvider = ({children})=>{
           Sale: "True",
           quantity: 1,
           Brand: "A",
-          altimg:  {url: img1},
-          altimg1: {url: img1},
-          altimg2: {url: img1},
-          altimg3: {url: img1}
+          // altimg:  {url: img1b},
+          // altimg1: {url: img1b}
+          // altimg2: {url: img1a},
+          // altimg3: {url: img1a}
         },
         {
           id: 2,
