@@ -1,11 +1,23 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 /* eslint-disable @next/next/no-img-element */
 import {FaShoppingBag} from "react-icons/fa";
 import Link from "next/link";
 import React, { useContext } from "react";
 import { CartContext } from "@/contexts/CartContext";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
   const { cartTotalItem } = useContext(CartContext);
+  const router = useRouter();
+
+  const handleLogout = (e) => {
+    // Remove the token from local storage on logout
+    e.preventDefault();
+    localStorage.removeItem("token");
+    // Redirect to the login page after logout
+    router.push("/login");
+  };
+
   return (
     <>
       <div className="navbar">
@@ -14,7 +26,7 @@ const Navbar = () => {
             <div className="side-left">
               <div className="max-w-screen-xl py-3 mx-auto">
                 <div className="p-1 bg-black">
-                  <a href="#">
+                  <a href="/">
                     <h1 className="text-white tracking-wide">NOUS</h1>
                   </a>
                 </div>
@@ -105,17 +117,29 @@ const Navbar = () => {
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="flex items-center">
+                    <a
+                      href="/admin"
+                      className="text-black dark:text-black hover:text-orange-400"
+                    >
+                      Admin
+                    </a>
+                  </li>
+                  <li>
+                    <Link href="#" className="flex items-center">
+                      <div className="h-6 w-6">
                       <img
                         src="images/login.jpg"
                         className="h-5 mr-3"
                         alt="Login-logo"
                       />
-                      <span className="text-black dark:text-black hover:text-orange-400">
-                        Log In
+                      </div>
+                      <span className="text-black dark:text-black hover:text-orange-400 pl-2">
+                        {/* <button onClick={handleLogout}>Log out</button> */}
+                        <button onClick={handleLogout}>Log out</button>
                       </span>
-                    </a>
+                    </Link>
                   </li>
+
                   <li><Link href="/checkout" className="hover:text-orange-400">
                   <button className="relative flex items-center w-8 h-8 border border-black">
                     <FaShoppingBag className="w-10" />
@@ -125,7 +149,6 @@ const Navbar = () => {
                   </button>
                     </Link></li>
                 </ul>
-    
               </div>
             </div>
           </div>

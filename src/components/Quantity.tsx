@@ -6,15 +6,14 @@ import { CartContext } from "@/contexts/CartContext";
 // import Incdec from "./Incdec";
 
 const Quantity = (props: any) => {
+  console.log(props.e);
   const {
     // cartItems,
     setCartItems,
     removeFromCart,
-    // setCartCount,
     // cartTotalPrice,
     // cartTotalItem,
     // setCartTotalItem,
-    
   } = useContext(CartContext) as any;
 
   const removeHandler = (id: any) => {
@@ -29,13 +28,14 @@ const Quantity = (props: any) => {
           return {
             ...product,
             quantity: product.quantity + 1,
-            // setCartCount: cartCount+1,
           };
         }
         return product;
       });
       return updatedProducts;
     });
+    // setCounter(counter + 1);
+    // props.quantity += 1;
   };
 
   const decreaseCount = () => {
@@ -66,7 +66,7 @@ const Quantity = (props: any) => {
       <hr className="mt-3 w-full mb-3 border-gray-500" />
       <div className="flex py-4 mb-5">
         <div className="w-20" key={props.i}>
-          <Image src={props.e.image.url} alt="p14" />
+          {/* <Image src={props.e.photoUrl} height={500} width={500} alt="p14" /> */}
         </div>
         <div className="ml-2">
           <div className="size-sm">{props.e.name}</div>
