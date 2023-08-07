@@ -10,6 +10,14 @@ import axios from "axios";
 const Navbar = () => {
   const router = useRouter();
   const [userRole, setUserRole] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   useEffect(() => {
     axios
@@ -17,15 +25,15 @@ const Navbar = () => {
         headers: { authorization: localStorage.getItem("token") },
       })
       .then((response) => {
-        // console.log(response.data.data.role);
         setUserRole(response.data.data.role);
       })
       .catch((error) => {
         console.error("Error fetching user role:", error);
-        setUserRole(""); // Set userRole to empty string in case of error
+        setUserRole("");
       });
   }, []);
 
+  
   const handleLogout = (e) => {
     // Remove the token from local storage on logout
     e.preventDefault();
@@ -151,8 +159,9 @@ const Navbar = () => {
                       Admin
                     </button>
                   </li>
+      
                   <li>
-                    <Link href="#" className="flex items-center">
+                    <div className="flex items-center">
                       <div className="h-6 w-6">
                       <img
                         src="images/login.jpg"
@@ -160,11 +169,26 @@ const Navbar = () => {
                         alt="Login-logo"
                       />
                       </div>
-                      <span className="text-black dark:text-black hover:text-orange-400 pl-2">
-                        {/* <button onClick={handleLogout}>Log out</button> */}
-                        <button onClick={handleLogout}>Log out</button>
-                      </span>
-                    </Link>
+                      {isLoggedIn ? (
+                        <div className="pl-2">
+                          <button
+                            className="text-black dark:text-black hover:text-orange-400"
+                            onClick={handleLogout}
+                          >
+                            Log out
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="pl-2">
+                          <Link
+                            href="/login"
+                            className="text-black dark:text-black hover:text-orange-400"
+                          >
+                            Login
+                          </Link>
+                        </div>
+                      )}
+                    </div>
                   </li>
 
                   <li><Link href="/checkout" className="hover:text-orange-400">

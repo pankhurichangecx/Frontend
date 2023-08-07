@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -8,7 +9,7 @@ export const ImgComponent = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const handleData = (productId) => {
+  const handleData = (productId: any) => {
     // setSelectedProductId(productId);
     router.push(`/pdp?productId=${productId}`);
   };
@@ -16,7 +17,7 @@ export const ImgComponent = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  const fetchData = async (page) => {
+  const fetchData = async (page: number) => {
     try {
       const res = await axios.get(`http://127.0.0.1:3000/api/v1/products`, {
         params: {
