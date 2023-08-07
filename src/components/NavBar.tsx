@@ -2,13 +2,29 @@
 /* eslint-disable @next/next/no-img-element */
 import {FaShoppingBag} from "react-icons/fa";
 import Link from "next/link";
-import React, { useContext } from "react";
+import React, {useEffect, useState } from "react";
 import { CartContext } from "@/contexts/CartContext";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 const Navbar = () => {
-  const { cartTotalItem } = useContext(CartContext);
   const router = useRouter();
+  const [userRole, setUserRole] = useState("");
+
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:3000/api/v1/users/getuserrole", {
+        headers: { authorization: localStorage.getItem("token") },
+      })
+      .then((response) => {
+        // console.log(response.data.data.role);
+        setUserRole(response.data.data.role);
+      })
+      .catch((error) => {
+        console.error("Error fetching user role:", error);
+        setUserRole(""); // Set userRole to empty string in case of error
+      });
+  }, []);
 
   const handleLogout = (e) => {
     // Remove the token from local storage on logout
@@ -16,6 +32,17 @@ const Navbar = () => {
     localStorage.removeItem("token");
     // Redirect to the login page after logout
     router.push("/login");
+  };
+
+   const isAdmin = userRole === "admin";
+
+   const handleAdminClick = () => {
+    if (isAdmin) {
+      router.push("/admin");
+    } else {
+      alert("You do not have permission to access the Admin section.");
+      router.push("/");
+    }
   };
 
   return (
@@ -117,12 +144,12 @@ const Navbar = () => {
                     </a>
                   </li>
                   <li>
-                    <a
-                      href="/admin"
+                    <button
                       className="text-black dark:text-black hover:text-orange-400"
+                      onClick={handleAdminClick}
                     >
                       Admin
-                    </a>
+                    </button>
                   </li>
                   <li>
                     <Link href="#" className="flex items-center">
@@ -143,9 +170,7 @@ const Navbar = () => {
                   <li><Link href="/checkout" className="hover:text-orange-400">
                   <button className="relative flex items-center w-8 h-8 border border-black">
                     <FaShoppingBag className="w-10" />
-                    <div className="absolute top-0 right-0 pr-1 pl-1 pt-0.5 pb-0.5 bg-red-500 text-white text-xs font-bold rounded-full transform translate-x-1/2 -translate-y-1/2 mt-6">
-                      {cartTotalItem}
-                    </div>
+                    
                   </button>
                     </Link></li>
                 </ul>

@@ -177,7 +177,7 @@ export default function ProDetails() {
                       className="w-44 bg-orange-500 text-white font-semibold py-2 px-4 
                   rounded-none border-2 border-transparent hover:bg-white hover:text-orange-500
                   hover:border-orange-500 hover:border-solid"
-                  onClick={() => handleAddToCart(productData)}
+                  onClick={() => handleAddToCart(product)}
                     >
                       Add to Cart
                     </button>
