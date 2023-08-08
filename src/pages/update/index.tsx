@@ -1,4 +1,4 @@
-import UpdatePasswordForm from "@/components/UpdatePassword";
+import UserDetails from "@/components/UpdatePassword";
 export default function Product(){
-  return <UpdatePasswordForm></UpdatePasswordForm>;
+  return <UserDetails></UserDetails>;
 }

@@ -2,12 +2,14 @@
 /* eslint-disable @next/next/no-img-element */
 import {FaShoppingBag} from "react-icons/fa";
 import Link from "next/link";
-import React, {useEffect, useState } from "react";
-import { CartContext } from "@/contexts/CartContext";
+// import React, { useContext } from "react";
+// import { CartContext } from "@/contexts/CartContext";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
+
   const router = useRouter();
   const [userRole, setUserRole] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -33,7 +35,6 @@ const Navbar = () => {
       });
   }, []);
 
-  
   const handleLogout = (e) => {
     // Remove the token from local storage on logout
     e.preventDefault();
@@ -42,14 +43,16 @@ const Navbar = () => {
     router.push("/login");
   };
 
-   const isAdmin = userRole === "admin";
+  const isAdmin = userRole === "admin";
 
-   const handleAdminClick = () => {
+  const handleAdminClick = () => {
     if (isAdmin) {
       router.push("/admin");
     } else {
       alert("You do not have permission to access the Admin section.");
       router.push("/");
+      // Alternatively, you can redirect to another page
+      // router.push("/some-other-page");
     }
   };
 
@@ -74,12 +77,13 @@ const Navbar = () => {
                     type="search"
                     id="default-search"
                     className="block w-full p-4 pl-10 text-sm text-black bg-white dark:bg-white"
+                    placeholder="Search..."
                   />
                   <label
                     htmlFor="default-search"
                     className="absolute inset-y-0 left-7 flex items-center pl-3 pointer-events-none text-black dark:text-black dark:placeholder-transparent"
                   >
-                    Search...
+                  
                   </label>
                   <svg
                     className="absolute w-4 h-4 left-3 bottom-4 text-gray-500 dark:text-black "
@@ -159,13 +163,12 @@ const Navbar = () => {
                       Admin
                     </button>
                   </li>
-      
                   <li>
                     <div className="flex items-center">
                       <div className="h-6 w-6">
                       <img
                         src="images/login.jpg"
-                        className="h-5 mr-3"
+                        className="h-6 mr-3"
                         alt="Login-logo"
                       />
                       </div>
@@ -175,7 +178,7 @@ const Navbar = () => {
                             className="text-black dark:text-black hover:text-orange-400"
                             onClick={handleLogout}
                           >
-                            Log out
+                            Logout
                           </button>
                         </div>
                       ) : (
