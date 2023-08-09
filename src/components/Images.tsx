@@ -63,7 +63,7 @@ export const ImgComponent = () => {
             <div className="card">
               <img
                 src={product.photoUrl}
-                className="w-full p-1"
+                className="w-full p-1 hover:cursor-pointer"
                 alt={product.name}
                 style={{ height: "300px", width: "500px", objectFit: "cover" }}
                 onClick={() => handleData(product._id)}

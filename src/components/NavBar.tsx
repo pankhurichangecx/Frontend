@@ -13,7 +13,7 @@ const Navbar = () => {
   const router = useRouter();
   const [userRole, setUserRole] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+ 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -78,7 +78,7 @@ const Navbar = () => {
                     id="default-search"
                     className="block w-full p-4 pl-10 text-sm text-black bg-white dark:bg-white"
                     placeholder="Search..."
-                  />
+                    />
                   <label
                     htmlFor="default-search"
                     className="absolute inset-y-0 left-7 flex items-center pl-3 pointer-events-none text-black dark:text-black dark:placeholder-transparent"

@@ -206,11 +206,11 @@ export default function ProDetails() {
                 </button>
               {/* </Link> */}
                 {/* <Link href="/compare"> */}
-                <button className="bg-black text-center text-white p-2 mt-4 w-64 ml-4 hover:bg-white hover:text-black hover:border-black hover:border-2"
+                {/* <button className="bg-black text-center text-white p-2 mt-4 w-64 ml-4 hover:bg-white hover:text-black hover:border-black hover:border-2"
                 // onClick={handleAddToCompare}
                 >
                   Add to Compare List
-                </button>
+                </button> */}
                 {/* </Link> */}
               </div>
               <div className="mt-7 mb-4">PRODUCT INFO</div>
